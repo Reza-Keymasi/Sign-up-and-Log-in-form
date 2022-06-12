@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./SignUp.module.css";
 
-import { validate } from "./Validate"
+import { validate } from "./Validate";
+import { notify } from "./Toast"
 
 const SignUp = () => {
 
@@ -39,7 +40,7 @@ const SignUp = () => {
     const submitHandler = (event) => {
         event.preventDefault();
         if (!Object.keys(errors).length) {
-
+            console.log(data)
         }else {
             setTouched({
                 name: true,
