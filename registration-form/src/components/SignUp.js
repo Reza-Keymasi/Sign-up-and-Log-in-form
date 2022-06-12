@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./SignUp.module.css";
+import {ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { validate } from "./Validate";
 import { notify } from "./Toast"
@@ -18,30 +20,29 @@ const SignUp = () => {
     const [touched, setTouched] = useState({});
 
     useEffect(() => {
-        setErrors(validate(data))
-        console.log(errors)
+        setErrors(validate(data, "signup"))
     }, [data, touched])
 
 
 
     const changeHandler = (event) => {
         if(event.target.name === "isAccepted") {
-            setData({...data, [event.target.name] : event.target.checked})
+            setData({...data, [event.target.name] : event.target.checked});
         } else {
-            setData({...data, [event.target.name] : event.target.value})
+            setData({...data, [event.target.name] : event.target.value});
         }
-        console.log(data)
     }
 
     const focusHandler =(event) => {
-        setTouched({...data, [event.target.name] : true})
+        setTouched({...touched, [event.target.name] : true});
     }
 
     const submitHandler = (event) => {
         event.preventDefault();
         if (!Object.keys(errors).length) {
-            console.log(data)
+            notify("Sign In Successfully", "success")
         }else {
+            notify("Invalid Data", "error")
             setTouched({
                 name: true,
                 email: true,
@@ -51,6 +52,7 @@ const SignUp = () => {
             })
         }
     }
+
 
     return (
         <div className={styles.container}>
@@ -116,10 +118,11 @@ const SignUp = () => {
                     {errors.name && touched.isAccepted && <span>{errors.isAccepted}</span>}
                 </div>
                 <div>
-                    <a href="#">Login</a>
-                    <button type="submit">Submit</button>
+                    <a href="/#">Login</a>
+                    <button type="submit">Sign In</button>
                 </div>
             </form>
+            <ToastContainer />
         </div>
     );
 };
