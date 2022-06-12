@@ -11,16 +11,26 @@ const SignUp = () => {
         isAccepted : false,
     })
 
+    const changeHandler = (event) => {
+        if(event.target.name === "isAccepted") {
+            setData({...data, [event.target.name] : event.target.checked})
+        } else {
+            setData({...data, [event.target.name]: event.target.value})
+        }
+        console.log(data)
+    }
+
     return (
-        <div clasName={styles.container}>
-            <from className={styles.formContainer}>
+        <div className={styles.container}>
+            <form className={styles.formContainer}>
                 <h2 className={styles.header}>Sign Up</h2>
                 <div>
                     <label>Name</label>
                     <input
                     type="text"
                     name="name"
-                    value={data.name}>
+                    value={data.name}
+                    onChange={changeHandler}>
                     </input>
                 </div>
 
@@ -29,7 +39,8 @@ const SignUp = () => {
                     <input
                     type="text"
                     name="email"
-                    value={data.email}>
+                    value={data.email}
+                    onChange={changeHandler}>
                     </input>
                 </div>
 
@@ -38,7 +49,8 @@ const SignUp = () => {
                     <input
                     type="password"
                     name="password"
-                    value={data.password}>
+                    value={data.password}
+                    onChange={changeHandler}>
                     </input>
                 </div>
 
@@ -47,7 +59,8 @@ const SignUp = () => {
                     <input
                     type="password"
                     name="confirmPassword"
-                    value={data.confirmPassword}>
+                    value={data.confirmPassword}
+                    onChange={changeHandler}>
                     </input>
                 </div>
 
@@ -56,14 +69,15 @@ const SignUp = () => {
                     <input
                     type="checkbox"
                     name="isAccepted"
-                    value={data.isAccepted}>
+                    value={data.isAccepted}
+                    onChange={changeHandler}>
                     </input>
                 </div>
                 <div>
                     <a href="#">Login</a>
                     <button type="submit">Submit</button>
                 </div>
-            </from>
+            </form>
         </div>
     );
 };
