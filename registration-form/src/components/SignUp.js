@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from "./SignUp.module.css";
 import {ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
 
 import { validate } from "./Validate";
 import { notify } from "./Toast"
@@ -120,7 +121,7 @@ const SignUp = () => {
                     </div>
                 </div>
                 <div className={styles.formButtons}>
-                    <a href="/#">Login</a>
+                    <Link to="/login">Login</Link>
                     <button type="submit">Sign In</button>
                 </div>
             </form>
