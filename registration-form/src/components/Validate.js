@@ -1,13 +1,9 @@
-export const validate = (data) => {
+export const validate = (data, type) => {
 
-    const errors = {}
+    const errors = {};
 
-    if(!data.name.trim()) {
-        errors.name = "Username Required"
-    } else{
-        delete errors.name
-    }
 
+    
     if (!data.email) {
         errors.email = "Email Required"
     } else if (!/\S+@\S+\.\S+/.test(data.email)) {
@@ -17,25 +13,38 @@ export const validate = (data) => {
     }
 
     if(!data.password) {
-        errors.password = "Password Is Required" 
-    } else if (data.password.length < 6) {
-        errors.password = "Password Needs More Than 6 Characters"
+        errors.password = "Password Is Required"
+    } else if (data.password.lenght < 6) {
+        errors.password = "Password Needs 6 Characters Or More"
     } else {
         delete errors.password
     }
+
+
+
+    if (type === "signup") {
+        
+        if (!data.name.trim()) {
+            errors.name = "UserName Required"
+        } else {
+            delete errors.name
+        }
+
+        if (!data.confirmPassword) {
+            errors.confirmPassword = "Confirm The Password"
+        } else if (data.confirmPassword !== data.password) {
+            errors.confirmPassword = "Password Not Matched"
+        } else {
+            delete errors.confirmPassword
+        }
     
-    if(!data.confirmPassword) {
-        errors.confirmPassword = "Confirm The Password " 
-    } else if (data.confirmPassword !== data.password) {
-        errors.confirmPassword = "Passwords Do Not Matched"
-    } else {
-        delete errors.confirmPassword
+        if (data.isAccepted) {
+            delete errors.isAccepted
+        } else {
+            errors.isAccepted = "Accept Our Regulations"
+        }
     }
 
-    if(data.isAccepted) {
-        delete errors.isAccepted
-    } else {
-        errors.isAccepted = "Accept Our Regulations"
-    }
-    return errors
+    return errors;
+
 }
