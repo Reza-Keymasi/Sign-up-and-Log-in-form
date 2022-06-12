@@ -52,12 +52,16 @@ const SignUp = () => {
                 </div>
 
                 <div>
-                    <label>Name</label>
+                    <label>I Accept Privacy Policy</label>
                     <input
-                    type="text"
-                    name="name"
-                    value={data.name}>
+                    type="checkbox"
+                    name="isAccepted"
+                    value={data.isAccepted}>
                     </input>
+                </div>
+                <div>
+                    <a href="#">Login</a>
+                    <button type="submit">Submit</button>
                 </div>
             </from>
         </div>
