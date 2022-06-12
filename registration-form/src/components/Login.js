@@ -6,8 +6,7 @@ import { Link } from "react-router-dom"
 
 import { validate } from "./Validate";
 import {notify} from "./Toast";
-import styles from "./LogIn.module.css";
-import wave from "./images/wave5.jpg";
+import styles from "./Login.module.css";
 
 
 const Login = () => {
@@ -47,7 +46,6 @@ const Login = () => {
 
     return (
         <div className={styles.container}>
-            <img className={styles.container} src={wave} alt="Wave"></img>
             <form onSubmit={submitHandler} className={styles.formContainer}>
                 <h2 className={styles.header}>Login</h2>
                 <div className={styles.formField}>
@@ -73,7 +71,7 @@ const Login = () => {
                     {errors.password && touched.password && <span>{errors.password}</span>}
                 </div>
                 <div className={styles.formButtons}>
-                <Link href="/signup">Sign Up</Link>
+                <Link to="/signup">Sign Up</Link>
                     <button type="submit">Login</button>
                 </div>
             </form>
