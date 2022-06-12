@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-export const nptify = (text, type) => {
+export const notify = (text, type) => {
     if (type === "success") {
         toast.success(text)
     } else {
